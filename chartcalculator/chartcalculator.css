@@ -1,0 +1,54 @@
+body {
+  border: 2px solid #333; /* 두께와 색상을 조정 */
+  margin: 20px; /* 페이지 전체에 여백을 추가 */
+  padding: 10px; /* 컨텐츠와 border 사이에 패딩 추가 */
+  box-sizing: border-box; /* 패딩과 보더를 포함한 전체 크기를 설정 */
+  top: 25%;
+  font-family:fantasy;
+}
+
+/* 기본적인 텍스트 정렬 및 마진 설정 */
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+canvas {
+  display: block;
+  margin: 0 auto; /* 그래프를 중앙에 배치 */
+}
+
+#graph {
+  width: 100%;
+}
+
+/** 3d 버튼 */
+.button-3d {
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.button-3d:hover {
+  transform: translateY(-4px);
+}
+
+.button-3d:active {
+  transform: translateY(-1px);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}

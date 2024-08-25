@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>geometrycalculator2D</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+  <button><a href="../index.html" id="return">돌아가기</a></button>
+  <h1>수학 그래프 그리기</h1>
+
+  <!-- 사용자가 입력할 수 있는 공간 -->
+  <label for="equation">수식을 입력하세요 (예: x * x): </label>
+  <input type="text" id="equation" placeholder="수식을 입력하세요">
+  <button onclick="drawGraph()">그래프 추가하기</button>
+  
+  <!-- 그래프가 그려질 공간 -->
+  <div id="graph"></div>
+
+  <script>
+    // SVG와 그래프 설정
+    const width = 800;
+    const height = 400;
+    const margin = {top: 20, right: 30, bottom: 30, left: 40};
+
+    const svg = d3.select("#graph")
+      .append("svg")
+      .attr("width", width)
+      .attr("height", height)
+      .append("g")
+      .attr("transform", `translate(${margin.left},${margin.top})`);
+
+    const x = d3.scaleLinear()
+      .domain([-10, 10])
+      .range([0, width - margin.left - margin.right]);
+
+    const y = d3.scaleLinear()
+      .domain([-10, 10])
+      .range([height - margin.top - margin.bottom, 0]);
+
+    // x축과 y축 생성
+    svg.append("g")
+      .attr("transform", `translate(0,${y(0)})`)
+      .call(d3.axisBottom(x));
+
+    svg.append("g")
+      .attr("transform", `translate(${x(0)},0)`)
+      .call(d3.axisLeft(y));
+
+    // 사용자가 수식을 입력하면 그래프를 그리는 함수
+    function drawGraph() {
+      const equation = document.getElementById("equation").value; // 사용자가 입력한 수식
+      if (!equation) return;
+
+      try {
+        // 수식을 계산하기 위한 데이터 생성
+        const data = d3.range(-10, 10.1, 0.1).map(d => {
+          let x = d;
+          let y = eval(equation); // x와 y를 모두 수식에서 사용할 수 있게 함
+          return {x: x, y: y};
+        });
+
+        // 그래프 그리기
+        const line = d3.line()
+          .x(d => x(d.x))
+          .y(d => y(d.y));
+
+        svg.append("path")
+          .datum(data)
+          .attr("fill", "none")
+          .attr("stroke", "steelblue")
+          .attr("stroke-width", 2)
+          .attr("d", line);
+      } catch (error) {
+        alert("수식에 오류가 있습니다. 다시 입력해주세요.");
+      }
+    }
+  </script>
+</body>
+</html>

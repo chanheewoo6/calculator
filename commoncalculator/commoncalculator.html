@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./commoncalculatorstyle.css">
+  <title>commoncalculator</title>
+  <script>
+    let result = "";
+
+    function wr(value) {
+      if (value === "=") {
+        try {
+          // Replace symbols with JavaScript operators
+          result = result.replace(/×/g, '*').replace(/÷/g, '/');
+          if (result == '*') {
+            result = '×';
+          } else if (result == '/') {
+            result = '÷';
+          };
+          let lR = result;
+          result = eval(result);
+          document.getElementById('lastResult').innerText = lR;
+          document.getElementById('result').innerText = result;
+        } catch (e) {
+          document.getElementById('result').innerText = "Error";
+          document.getElementById('lastResult').innerText = "Error";
+        }
+      } else {
+        if (result === '0') {
+          result = value;
+          if (result == '*') {
+            result = '×';
+          } else if (result == '/') {
+            result = '÷';
+          };
+
+        } else {
+          result += value;
+        }
+        document.getElementById('result').innerText = result;
+      }
+    }
+
+    function reset() {
+      result = '0';
+      document.getElementById('lastResult').innerText = '';
+      document.getElementById('result').innerText = result; 
+    }
+
+    function square() {
+      a = prompt("제곱수를 입력하세요")
+      try {
+        // Square the current result
+        result = eval(result) ** a
+        document.getElementById('result').innerText = result;
+      } catch (e) {
+        document.getElementById('result').innerText = "Error";
+      }
+    }
+
+    function remove() {
+      result = result.slice(0, -1)
+      if (result == '') {
+        result = '0'
+      } 
+      document.getElementById('result').innerText = result
+    }
+  </script>
+</head>
+<body id="color">
+  <button><a href="../index.html" id="return">돌아가기</a></button>
+  <table id="main">
+    <tr id="noBorder">
+      <td colspan="2" id="lastResult"><h6></h6></td>
+      <td colspan="2"><h6>마지막으로 나온 계산식입니다.</h6></td>
+    </tr>
+    <tr>
+      <td colspan="4" id="result">0</td>
+    </tr>
+    <tr>
+      <td><button onclick="wr('1')" class="color1">1</button></td>
+      <td><button onclick="wr('2')" class="color1">2</button></td>
+      <td><button onclick="wr('3')" class="color1">3</button></td>
+      <td><button onclick="wr('+')" class="color5">+</button></td>
+    </tr>
+    <tr>
+      <td><button onclick="wr('4')" class="color1">4</button></td>
+      <td><button onclick="wr('5')" class="color1">5</button></td>
+      <td><button onclick="wr('6')" class="color1">6</button></td>
+      <td><button onclick="wr('-')" class="color2">-</button></td>
+    </tr>
+    <tr>
+      <td><button onclick="wr('7')" class="color1">7</button></td>
+      <td><button onclick="wr('8')" class="color1">8</button></td>
+      <td><button onclick="wr('9')" class="color1">9</button></td>
+      <td><button onclick="wr('×')" class="color2">×</button></td>
+    </tr>
+    <tr>
+      <td><button onclick="reset()" id="color3">C</button></td>
+      <td><button onclick="wr('0')" class="color1">0</button></td>
+      <td><button onclick="wr('=')" id="color4">=</button></td>
+      <td><button onclick="wr('÷')" class="color2">÷</button></td>
+    </tr>
+    <tr>
+      <td><button onclick="wr('.')" class="color2">.</button></td>
+      <td colspan="2"><button onclick="square()" class="color5">제곱</button></td>
+      <td><button onclick="remove()"id="color3">←</button></td>
+    </tr>
+  </table>
+</body>
+</html>

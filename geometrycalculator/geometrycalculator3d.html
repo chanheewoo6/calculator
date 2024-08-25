@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>geometrycalculator3D</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://unpkg.com/three@0.138.3/build/three.min.js"></script>
+  <script src="https://unpkg.com/three@0.138.3/examples/js/controls/OrbitControls.js"></script>
+</head>
+<body>
+  <button><a href="../index.html" id="return">돌아가기</a></button>
+  <h1>기하학 계산기</h1>
+
+  <label for="equation">수식을 입력하세요 (예: x * x + y * y): </label>
+  <input type="text" id="equation" placeholder="수식을 입력하세요">
+  
+  <label for="color">선의 색상을 선택하세요: </label>
+  <input type="color" id="color" value="#0000ff"> <!-- 기본 색상은 파란색 -->
+  
+  <button onclick="drawGraph()">그래프 추가하기</button>
+  
+  <div id="graph"></div>
+
+  <script>
+    // 기본 3D 설정
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.getElementById('graph').appendChild(renderer.domElement);
+
+    const controls = new THREE.OrbitControls(camera, renderer.domElement);
+    camera.position.set(0, 0, 50);
+    controls.update();
+
+    const gridHelper = new THREE.GridHelper(200, 50);
+    scene.add(gridHelper);
+
+    const axesHelper = new THREE.AxesHelper(50);
+    scene.add(axesHelper);
+
+    function safeEval(expression, xValue, yValue) {
+      return Function(`"use strict"; let x = ${xValue}; let y = ${yValue}; return (${expression});`)();
+    }
+
+    function drawGraph() {
+      const equation = document.getElementById("equation").value;
+      const color = document.getElementById("color").value; // 사용자가 선택한 색상
+      if (!equation) return;
+
+      const material = new THREE.LineBasicMaterial({ color: color }); // 선택한 색상을 적용
+      const points = [];
+
+      for (let x = -10; x <= 10; x += 0.5) {
+        for (let y = -10; y <= 10; y += 0.5) {
+          const z = safeEval(equation, x, y);
+          points.push(new THREE.Vector3(x, y, z));
+        }
+      }
+
+      const geometry = new THREE.BufferGeometry().setFromPoints(points);
+      const line = new THREE.Line(geometry, material);
+
+      scene.add(line);
+      animate();
+    }
+
+    function animate() {
+      requestAnimationFrame(animate);
+      controls.update();
+      renderer.render(scene, camera);
+    }
+
+    animate();
+  </script>
+</body>
+</html>

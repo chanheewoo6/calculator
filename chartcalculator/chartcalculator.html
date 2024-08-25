@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Graph Calculator</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="./Graphs/graphManager.js" defer></script> <!-- JavaScript 파일 추가 -->
+  <link rel="stylesheet" href="./chartcalculator.css">
+</head>
+<body>
+  <button><a href="../index.html">돌아가기</a></button>
+  <h2>그래프계산기</h2>
+  <h2 id="selectedTopic">선택된 주제가 여기에 표시됩니다.</h2> <!-- 선택된 주제 표시 -->
+  <table>
+    <tr id="Graph">
+      <td><button class="button-3d" id="BarGraph">막대그래프</button></td>
+      <td><button class="button-3d" id="lineGraph">꺾은선그래프</button></td>
+      <td><button class="button-3d" id="circleGraph">원그래프</button></td>
+    </tr>
+  </table>
+  <table>
+    <tr>
+      <td id="type"><p>항목(쉼표로 구분)</p></td>
+      <td><input type="text" id="key" class="input1"></td>
+    </tr>
+    <tr>
+      <td id="type"><p>주제, 값(각 주제는 세미콜론으로 구분, 쉼표로 값 구분)</p></td>
+      <h1>마우스를 각 칸 위에 올려보세요</h1>
+      <td><input type="text" id="values" class="input1"></td>
+    </tr>
+  </table>
+  <canvas id="myChart" width="400" height="200"></canvas>
+</body>
+</html>
