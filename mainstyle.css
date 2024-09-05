@@ -1,6 +1,7 @@
 body {
   align-items: center;
   background-image: url(./img/calculator.png);
+  margin: auto;
 }
 
 /* .tiledBackground {
@@ -48,6 +49,7 @@ p {
     rgba(0, 0, 10, 0.8),
     rgba(0, 0, 10, 0.8)
   ), url(./img/math.jpg);
+  margin: auto;
 }
 
 h1 {
