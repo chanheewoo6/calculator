@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>도형 생성기</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>도형 생성기</h1>
+
+    <!-- 모드 선택 버튼 -->
+    <div class="mode-selection">
+      <button id="2d-mode">2D 도형</button>
+      <button id="3d-mode">3D 도형</button>
+    </div>
+
+    <!-- 2D 도형 설정 -->
+    <div id="2d-settings" class="settings">
+      <h2>2D 도형 선택</h2>
+      <select id="2d-shape">
+        <option value="triangle">삼각형</option>
+        <option value="rectangle">사각형</option>
+        <option value="circle">원</option>
+      </select>
+      <div id="2d-params">
+        <!-- 도형 매개변수 (길이, 각도) -->
+        <label for="length">변의 길이:</label>
+        <input type="number" id="length" placeholder="변의 길이">
+      </div>
+      <button id="draw-2d">2D 도형 그리기</button>
+    </div>
+
+    <!-- 3D 도형 설정 -->
+    <div id="3d-settings" class="settings hidden">
+      <h2>3D 도형 선택</h2>
+      <select id="3d-shape">
+        <option value="cube">정육면체</option>
+        <option value="sphere">구</option>
+        <option value="cylinder">원기둥</option>
+      </select>
+      <div id="3d-params">
+        <!-- 도형 매개변수 (높이, 반지름) -->
+        <label for="dimension">크기:</label>
+        <input type="number" id="dimension" placeholder="크기">
+      </div>
+      <button id="draw-3d">3D 도형 그리기</button>
+    </div>
+
+    <!-- 결과 출력 -->
+    <div class="result">
+      <h2>도형 미리보기</h2>
+      <canvas id="canvas" width="400" height="400"></canvas>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
