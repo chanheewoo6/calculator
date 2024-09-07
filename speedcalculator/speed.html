@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>speed</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <button><a href="../index.html">돌아가기</a></button>
+    <h1>속력계산기</h1>
+    <div class="mode">
+      <label><input type="radio" name="mode" value="km/h"> km/h</label>
+      <label><input type="radio" name="mode" value="m/m"> m/m</label>
+      <label><input type="radio" name="mode" value="cm/s"> cm/s</label>
+    </div>
+    <div class="input">
+      <input type="text" id="distance">
+      <h3>얼마의 거리를 가야하는지 입력하시오</h3>
+      <input type="text" id="time">
+      <h3>몇 분만에 가야하는지 입력하시오</h3>
+      <div class="result">
+        <p>속력:</p>
+        <p id="result"></p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
