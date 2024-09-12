@@ -1,57 +1,109 @@
+/* 전체적인 body 설정 */
 body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  background-image: url(./img/calculator.png);
-  margin: auto;
-}
-
-/* .tiledBackground {
-  background-image: url(./img/calculator.png);
-  background-size: 150px;
-  width: 100%;
-  height: 83px;
-  border: 0px solid; 
-} */
-
-button {
+  justify-content: center;
+  min-height: 100vh;
   background-image: linear-gradient(
-        rgba(107, 107, 191, 0.8),
-        rgba(168, 143, 41, 0.8)
-      ), url("./img/image1.png");
+    rgba(107, 107, 191, 0.8),
+    rgba(167, 213, 238, 0.8));
+  background-size: cover;
+}
+
+/* .tiledBackground는 필요에 따라 사용하세요 */
+
+/* 버튼을 유연하게 배치하여 화면에 맞추기 */
+table {
+  width: 100%; /* 테이블이 화면을 꽉 채우도록 */
+  table-layout: fixed; /* 모든 셀이 동일한 너비로 배치되도록 */
+}
+
+table td {
+  padding: 10px;
+}
+
+/* 버튼이 창 크기에 맞추어 동적으로 크기가 변하도록 설정 */
+button {
+  width: 100%;
+  padding: 20px;
+  height: 100%;
+  background-image: linear-gradient(
+    rgba(107, 107, 191, 0.8),
+    rgba(168, 143, 41, 0.8)
+  );
   color: #fff;
-  width: 370px;
-  height: 500px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px; /* Rounded corners */
 }
 
-.select {
-  font-size: 200px;
+button:hover {
+  background-image: linear-gradient(
+    rgba(168, 143, 41, 0.8),
+    rgba(107, 107, 191, 0.8)
+  );
 }
 
+/* a 태그가 버튼 내에서 꽉 차게 */
 a {
-  text-decoration: none; /* 링크의 밑줄 제거 */  
+  text-decoration: none; /* 링크의 밑줄 제거 */
   color: inherit; /* 링크의 색상 제거 */
-
-  font-size: 18px;
-  color: blueviolet;
-  background-image: linear-gradient(to right, blue, skyblue);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  padding:2.5px, 5px; 
+  font-size: 1.5rem;
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+/* 하단 문구 중앙 정렬 */
 p {
   text-align: center;
 }
 
+/* 화면 중앙 정렬 */
 .center {
   text-align: center;
-  background-image:  linear-gradient(
+  background-image: linear-gradient(
     rgba(0, 0, 10, 0.8),
     rgba(0, 0, 10, 0.8)
   ), url(./img/math.jpg);
-  margin: auto;
+  background-size: cover;
+  width: 100%;
 }
 
 h1 {
   opacity: 1;
+  font-size: 2.5rem;
+}
+
+/* 돌아가기 버튼 스타일 */
+#return {
+  display: block;
+  width: 150px;
+  height: 50px;
+  background-color: #ff6f61; /* Coral color */
+  color: white;
+  text-align: center;
+  line-height: 50px; /* Center the text vertically */
+  border-radius: 25px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#return:hover {
+  background-color: #ff3d2e; /* Darker coral */
+  transform: scale(1.05);
 }
