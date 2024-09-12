@@ -3,12 +3,57 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>geometrycalculator2D</title>
+  <title>2D Geometry Calculator</title>
   <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f7fc;
+      color: #333;
+      text-align: center;
+      padding: 20px;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #004c99;
+    }
+    label, input, button {
+      font-size: 1.1rem;
+    }
+    input[type="text"] {
+      width: 300px;
+      padding: 8px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    #return {
+      text-decoration: none;
+      color: white;
+    }
+    #graph {
+      margin-top: 30px;
+      border: 1px solid #ddd;
+      background-color: white;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+  </style>
 </head>
 <body>
   <button><a href="../index.html" id="return">돌아가기</a></button>
-  <h1>수학 그래프 그리기</h1>
+  <h1>2D 수학 그래프 그리기</h1>
 
   <!-- 사용자가 입력할 수 있는 공간 -->
   <label for="equation">수식을 입력하세요 (예: x * x): </label>
@@ -19,7 +64,6 @@
   <div id="graph"></div>
 
   <script>
-    // SVG와 그래프 설정
     const width = 800;
     const height = 400;
     const margin = {top: 20, right: 30, bottom: 30, left: 40};
@@ -39,7 +83,6 @@
       .domain([-10, 10])
       .range([height - margin.top - margin.bottom, 0]);
 
-    // x축과 y축 생성
     svg.append("g")
       .attr("transform", `translate(0,${y(0)})`)
       .call(d3.axisBottom(x));
@@ -48,20 +91,17 @@
       .attr("transform", `translate(${x(0)},0)`)
       .call(d3.axisLeft(y));
 
-    // 사용자가 수식을 입력하면 그래프를 그리는 함수
     function drawGraph() {
-      const equation = document.getElementById("equation").value; // 사용자가 입력한 수식
+      const equation = document.getElementById("equation").value;
       if (!equation) return;
 
       try {
-        // 수식을 계산하기 위한 데이터 생성
         const data = d3.range(-10, 10.1, 0.1).map(d => {
           let x = d;
-          let y = eval(equation); // x와 y를 모두 수식에서 사용할 수 있게 함
+          let y = eval(equation);
           return {x: x, y: y};
         });
 
-        // 그래프 그리기
         const line = d3.line()
           .x(d => x(d.x))
           .y(d => y(d.y));
