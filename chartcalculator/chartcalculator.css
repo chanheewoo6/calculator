@@ -1,16 +1,21 @@
 body {
-  border: 2px solid #333; /* 두께와 색상을 조정 */
-  margin: 20px; /* 페이지 전체에 여백을 추가 */
-  padding: 10px; /* 컨텐츠와 border 사이에 패딩 추가 */
-  box-sizing: border-box; /* 패딩과 보더를 포함한 전체 크기를 설정 */
-  top: 25%;
-  font-family:fantasy;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  color: #333;
+  font-family: 'Poppins', sans-serif; /* Use a modern font */
+  margin: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 10px; /* Give a rounded corner effect */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
 }
 
-/* 기본적인 텍스트 정렬 및 마진 설정 */
 h2 {
+  font-size: 24px;
   text-align: center;
   margin-bottom: 20px;
+  color: #007BFF;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
 }
 
 table {
@@ -20,35 +25,40 @@ table {
 
 canvas {
   display: block;
-  margin: 0 auto; /* 그래프를 중앙에 배치 */
+  margin: 0 auto;
+  border: 2px solid #007BFF;
+  border-radius: 15px; /* Rounded borders for canvas */
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1); /* Shadow for depth */
 }
 
-#graph {
-  width: 100%;
-}
-
-/** 3d 버튼 */
 .button-3d {
-  background-color: #007BFF;
+  background: linear-gradient(145deg, #0061ff, #0091ff);
   color: white;
   border: none;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
+  padding: 12px 24px;
   font-size: 16px;
-  margin: 4px 2px;
+  margin: 8px 4px;
   cursor: pointer;
-  border-radius: 4px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s;
+  border-radius: 30px; /* Round buttons */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
 .button-3d:hover {
-  transform: translateY(-4px);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
 .button-3d:active {
-  transform: translateY(-1px);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+input {
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  width: 100%;
+  margin-bottom: 15px;
+  box-sizing: border-box;
 }

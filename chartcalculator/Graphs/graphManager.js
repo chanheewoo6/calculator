@@ -1,11 +1,10 @@
 let myChart;
 
-// 그래프 데이터 및 옵션을 생성하는 함수
 function createChart(type, labels, datasets) {
   const ctx = document.getElementById('myChart').getContext('2d');
   
   if (myChart) {
-    myChart.destroy();
+    myChart.destroy(); // Reset chart if already exists
   }
 
   myChart = new Chart(ctx, {
@@ -15,16 +14,51 @@ function createChart(type, labels, datasets) {
       datasets: datasets
     },
     options: {
+      responsive: true, // Ensure charts scale with screen size
+      plugins: {
+        legend: {
+          position: 'top',
+        },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              let label = context.dataset.label || '';
+              if (label) {
+                label += ': ';
+              }
+              if (context.parsed.y !== null) {
+                label += context.parsed.y;
+              }
+              return label;
+            }
+          }
+        }
+      },
       scales: {
         y: {
-          beginAtZero: true
+          beginAtZero: true,
+          grid: {
+            color: 'rgba(0, 0, 0, 0.1)',
+          },
+          title: {
+            display: true,
+            text: '값'
+          }
+        },
+        x: {
+          grid: {
+            color: 'rgba(0, 0, 0, 0.1)',
+          },
+          title: {
+            display: true,
+            text: '항목'
+          }
         }
       }
     }
   });
 }
 
-// 랜덤 색상을 생성하는 함수
 function getRandomColor() {
   const letters = '0123456789ABCDEF';
   let color = '#';
@@ -34,15 +68,12 @@ function getRandomColor() {
   return color;
 }
 
-// 사용자 입력을 기반으로 여러 주제로 그래프를 생성하는 함수
 function createGraphFromInput(graphType) {
   const labels = document.getElementById('key').value.split(',');
   const valuesList = document.getElementById('values').value.split(';');
 
   const datasets = valuesList.map((valueString, index) => {
     const values = valueString.split(',').map(Number);
-    
-    // 항목별 색상 설정
     const backgroundColors = values.map(() => getRandomColor());
 
     return {
@@ -50,19 +81,18 @@ function createGraphFromInput(graphType) {
       data: values,
       backgroundColor: backgroundColors,
       borderColor: backgroundColors,
-      borderWidth: 1
+      borderWidth: 2,
+      hoverOffset: 4
     };
   });
 
   createChart(graphType, labels, datasets);
 }
 
-// 선택된 주제를 표시하는 함수
 function displaySelectedTopic(topic) {
   document.getElementById('selectedTopic').textContent = `선택된 주제: ${topic}`;
 }
 
-// 이벤트 리스너 설정
 document.getElementById('BarGraph').addEventListener('click', function() {
   displaySelectedTopic('막대그래프');
   createGraphFromInput('bar');
