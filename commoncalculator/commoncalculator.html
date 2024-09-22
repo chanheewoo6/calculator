@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Common Calculator</title>
+  <title>일반 계산기</title>
   <style>
-    /* 전체적인 body 설정 */
     body {
       margin: 0;
       padding: 0;
@@ -18,19 +17,19 @@
         rgba(107, 107, 191, 0.8),
         rgba(167, 213, 238, 0.8));
       background-size: cover;
+      font-family: 'Arial', sans-serif;
     }
 
-    /* 버튼을 유연하게 배치하여 화면에 맞추기 */
     table {
-      width: 100%; /* 테이블이 화면을 꽉 채우도록 */
-      table-layout: fixed; /* 모든 셀이 동일한 너비로 배치되도록 */
+      width: 100%;
+      max-width: 400px;
+      table-layout: fixed;
     }
 
     table td {
       padding: 10px;
     }
 
-    /* 버튼이 창 크기에 맞추어 동적으로 크기가 변하도록 설정 */
     button {
       width: 100%;
       padding: 20px;
@@ -42,12 +41,12 @@
       color: #fff;
       border: none;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      transition: all 0.3s ease;
       font-size: 1.5rem;
       display: flex;
       justify-content: center;
       align-items: center;
-      border-radius: 5px; /* Rounded corners */
+      border-radius: 5px;
     }
 
     button:hover {
@@ -55,28 +54,24 @@
         rgba(168, 143, 41, 0.8),
         rgba(107, 107, 191, 0.8)
       );
+      transform: scale(1.05);
     }
 
-    /* a 태그가 버튼 내에서 꽉 차게 */
     a {
-      text-decoration: none; /* 링크의 밑줄 제거 */
-      color: inherit; /* 링크의 색상 제거 */
+      text-decoration: none;
+      color: inherit;
       font-size: 1.5rem;
-      display: block;
-      width: 100%;
-      height: 100%;
-      text-align: center;
       display: flex;
       justify-content: center;
       align-items: center;
+      width: 100%;
+      height: 100%;
     }
 
-    /* 하단 문구 중앙 정렬 */
     p {
       text-align: center;
     }
 
-    /* 화면 중앙 정렬 */
     .center {
       text-align: center;
       background-image: linear-gradient(
@@ -92,25 +87,43 @@
       font-size: 2.5rem;
     }
 
-    /* 돌아가기 버튼 스타일 */
     #return {
       display: block;
       width: 150px;
       height: 50px;
-      background-color: #ff6f61; /* Coral color */
+      background-color: #ff6f61;
       color: white;
       text-align: center;
-      line-height: 50px; /* Center the text vertically */
+      line-height: 50px;
       border-radius: 25px;
       font-size: 1.2rem;
       font-weight: bold;
       text-decoration: none;
       transition: background-color 0.3s ease, transform 0.2s ease;
+      margin-bottom: 20px;
     }
 
     #return:hover {
-      background-color: #ff3d2e; /* Darker coral */
+      background-color: #ff3d2e;
       transform: scale(1.05);
+    }
+
+    #result {
+      font-size: 2.5rem;
+      font-weight: bold;
+      text-align: right;
+      padding: 10px;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+
+    #lastResult {
+      font-size: 1.2rem;
+      text-align: right;
+      padding: 5px;
+      background-color: rgba(255, 255, 255, 0.6);
+      border-radius: 5px;
     }
   </style>
   <script>
@@ -119,15 +132,14 @@
     function wr(value) {
       if (value === "=") {
         try {
-          // Replace symbols with JavaScript operators
           result = result.replace(/×/g, '*').replace(/÷/g, '/');
           let lR = result;
           result = eval(result);
           document.getElementById('lastResult').innerText = lR;
           document.getElementById('result').innerText = result;
         } catch (e) {
-          document.getElementById('result').innerText = "Error";
-          document.getElementById('lastResult').innerText = "Error";
+          document.getElementById('result').innerText = "오류";
+          document.getElementById('lastResult').innerText = "오류";
         }
       } else {
         if (result === '0') {
@@ -147,10 +159,10 @@
 
     function square() {
       try {
-        result = eval(result) ** 2;
+        result = Math.pow(parseFloat(result), 2).toString();
         document.getElementById('result').innerText = result;
       } catch (e) {
-        document.getElementById('result').innerText = "Error";
+        document.getElementById('result').innerText = "오류";
       }
     }
 
@@ -163,44 +175,43 @@
     }
   </script>
 </head>
-<body id="color">
-  <button><a href="../index.html" id="return">돌아가기</a></button>
-  <table id="main">
-    <tr id="noBorder">
-      <td colspan="2" id="lastResult"><h6></h6></td>
-      <td colspan="2"><h6>마지막으로 나온 계산식입니다.</h6></td>
+<body>
+  <a href="../index.html" id="return">돌아가기</a>
+  <table>
+    <tr>
+      <td colspan="4" id="lastResult"></td>
     </tr>
     <tr>
       <td colspan="4" id="result">0</td>
     </tr>
     <tr>
-      <td><button onclick="wr('1')" class="color1">1</button></td>
-      <td><button onclick="wr('2')" class="color1">2</button></td>
-      <td><button onclick="wr('3')" class="color1">3</button></td>
-      <td><button onclick="wr('+')" class="color5">+</button></td>
+      <td><button onclick="wr('1')">1</button></td>
+      <td><button onclick="wr('2')">2</button></td>
+      <td><button onclick="wr('3')">3</button></td>
+      <td><button onclick="wr('+')">+</button></td>
     </tr>
     <tr>
-      <td><button onclick="wr('4')" class="color1">4</button></td>
-      <td><button onclick="wr('5')" class="color1">5</button></td>
-      <td><button onclick="wr('6')" class="color1">6</button></td>
-      <td><button onclick="wr('-')" class="color2">-</button></td>
+      <td><button onclick="wr('4')">4</button></td>
+      <td><button onclick="wr('5')">5</button></td>
+      <td><button onclick="wr('6')">6</button></td>
+      <td><button onclick="wr('-')">-</button></td>
     </tr>
     <tr>
-      <td><button onclick="wr('7')" class="color1">7</button></td>
-      <td><button onclick="wr('8')" class="color1">8</button></td>
-      <td><button onclick="wr('9')" class="color1">9</button></td>
-      <td><button onclick="wr('×')" class="color2">×</button></td>
+      <td><button onclick="wr('7')">7</button></td>
+      <td><button onclick="wr('8')">8</button></td>
+      <td><button onclick="wr('9')">9</button></td>
+      <td><button onclick="wr('×')">×</button></td>
     </tr>
     <tr>
-      <td><button onclick="reset()" id="color3">C</button></td>
-      <td><button onclick="wr('0')" class="color1">0</button></td>
-      <td><button onclick="wr('=')" id="color4">=</button></td>
-      <td><button onclick="wr('÷')" class="color2">÷</button></td>
+      <td><button onclick="reset()">C</button></td>
+      <td><button onclick="wr('0')">0</button></td>
+      <td><button onclick="wr('=')">=</button></td>
+      <td><button onclick="wr('÷')">÷</button></td>
     </tr>
     <tr>
-      <td><button onclick="wr('.')" class="color2">.</button></td>
-      <td colspan="2"><button onclick="square()" class="color5">제곱</button></td>
-      <td><button onclick="remove()" id="color3">←</button></td>
+      <td><button onclick="wr('.')">.</button></td>
+      <td colspan="2"><button onclick="square()">제곱</button></td>
+      <td><button onclick="remove()">←</button></td>
     </tr>
   </table>
 </body>
