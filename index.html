@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>mainpage</title>
   <link rel="stylesheet" href="./mainstyle.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <script src="./main.js"></script>
 </head>
 <body>  
@@ -19,16 +20,35 @@
     <h1 style="color: rgb(63, 252, 246);">
     다양한 계산기들을 모아둔 최첨단 계산기입니다!</h1>
   </div>
-  <table class="select">
-    <tr>  
-      <td><button><a class="a" href="./commoncalculator/commoncalculator.html">사칙<br>연산기</a></button></td>
-      <td><button><a class="a" href="./geometrycalculator/geometrycalculator2d.html">2D좌표<br>연산기</a></button></td>
-      <td><button><a class="a" href="./geometrycalculator/geometrycalculator3d.html">3D좌표<br>연산기</a></button></td>
-      <td><button><a class="a" href="./chartcalculator/chartcalculator.html">그래프<br>연산기</a></button></td>
-      <td><button><a class="a" href="./shapecalculator/main.html">도형 <br>연산기</a></button></td>
-      <td><button><a class="a" href="./speedcalculator/speed.html">속력 <br>연산기</a></button></td>
-    </tr>
-  </table>
+  <div class="calculator-selection">
+    <h2>계산기 선택</h2>
+    <div class="calculator-grid">
+      <a href="./commoncalculator/commoncalculator.html" class="calculator-item">
+        <i class="fas fa-calculator"></i>
+        <span>사칙 연산기</span>
+      </a>
+      <a href="./geometrycalculator/geometrycalculator2d.html" class="calculator-item">
+        <i class="fas fa-square"></i>
+        <span>2D좌표 연산기</span>
+      </a>
+      <a href="./geometrycalculator/geometrycalculator3d.html" class="calculator-item">
+        <i class="fas fa-cube"></i>
+        <span>3D좌표 연산기</span>
+      </a>
+      <a href="./chartcalculator/chartcalculator.html" class="calculator-item">
+        <i class="fas fa-chart-line"></i>
+        <span>그래프 연산기</span>
+      </a>
+      <a href="./shapecalculator/main.html" class="calculator-item">
+        <i class="fas fa-shapes"></i>
+        <span>도형 연산기</span>
+      </a>
+      <a href="./speedcalculator/speed.html" class="calculator-item">
+        <i class="fas fa-tachometer-alt"></i>
+        <span>속력 연산기</span>
+      </a>
+    </div>
+  </div>
   <div class="center">
     <h1 style="background-image: linear-gradient(to right, rgb(164, 164, 187), rgb(170, 55, 111));
     background-clip: text;
