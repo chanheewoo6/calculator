@@ -22,16 +22,33 @@
     </tr>
   </table>
 
+  <h3>입력 항목</h3>
   <table>
     <tr>
       <td><label for="key">항목 (쉼표로 구분)</label></td>
-      <td><input type="text" id="key" class="input1"></td>
+      <td><input type="text" id="key" class="input1" placeholder="예: 항목1, 항목2"></td>
     </tr>
     <tr>
-      <td><label for="values">주제, 값 (각 값은 세미콜론으로 구분, 쉼표로 주제 구분)</label></td>
-      <td><input type="text" id="values" class="input1"></td>
+      <td><label for="values">주제 및 값</label></td>
+      <td>
+        <div id="valuesContainer">
+          <input type="text" class="input1" placeholder="예: 주제1;값1">
+          <input type="text" class="input1" placeholder="예: 주제2;값2">
+        </div>
+        <button type="button" onclick="addValueInput()">추가</button>
+      </td>
     </tr>
   </table>
+  <script>
+    function addValueInput() {
+      const container = document.getElementById('valuesContainer');
+      const newInput = document.createElement('input');
+      newInput.type = 'text';
+      newInput.className = 'input1';
+      newInput.placeholder = '예: 주제3;값3';
+      container.appendChild(newInput);
+    }
+  </script>
 
   <canvas id="myChart" width="400" height="200"></canvas>
 </body>

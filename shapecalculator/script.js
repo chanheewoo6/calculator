@@ -2,11 +2,12 @@ document.addEventListener('DOMContentLoaded', function () {
   // 2D 도형 그리기
   document.getElementById('draw-2d').addEventListener('click', function () {
     const shape = document.getElementById('2d-shape').value;
-    const length = parseFloat(document.getElementById('length').value);
+    const base = parseFloat(document.getElementById('base').value);
+    const height = parseFloat(document.getElementById('height').value);
     const resultElement = document.getElementById('2d-result');
     
-    if (isNaN(length) || length <= 0) {
-      resultElement.textContent = '유효한 길이를 입력하세요.';
+    if (isNaN(base) || base <= 0 || isNaN(height) || height <= 0) {
+      resultElement.textContent = '유효한 길이와 높이를 입력하세요.';
       return;
     }
 
@@ -20,23 +21,22 @@ document.addEventListener('DOMContentLoaded', function () {
     ctx.lineWidth = 2;
 
     if (shape === 'triangle') {
-      area = (Math.sqrt(3) / 4) * Math.pow(length, 2);
-      const height = length * Math.sqrt(3) / 2;
+      area = (base * height) / 2;
       ctx.beginPath();
       ctx.moveTo(200, 100);
-      ctx.lineTo(200 - length / 2, 100 + height);
-      ctx.lineTo(200 + length / 2, 100 + height);
+      ctx.lineTo(200 - base / 2, 100 + height);
+      ctx.lineTo(200 + base / 2, 100 + height);
       ctx.closePath();
       ctx.stroke();
     } else if (shape === 'rectangle') {
-      area = Math.pow(length, 2);
+      area = base * height;
       ctx.beginPath();
-      ctx.rect(200 - length / 2, 200 - length / 2, length, length);
+      ctx.rect(200 - base / 2, 200 - height / 2, base, height);
       ctx.stroke();
     } else if (shape === 'circle') {
-      area = Math.PI * Math.pow(length / 2, 2);
+      area = Math.PI * Math.pow(base / 2, 2);
       ctx.beginPath();
-      ctx.arc(200, 200, length / 2, 0, Math.PI * 2);
+      ctx.arc(200, 200, base / 2, 0, Math.PI * 2);
       ctx.stroke();
     }
 
@@ -48,10 +48,12 @@ document.addEventListener('DOMContentLoaded', function () {
   // 3D 도형 그리기
   document.getElementById('draw-3d').addEventListener('click', function () {
     const shape = document.getElementById('3d-shape').value;
-    const dimension = parseFloat(document.getElementById('dimension').value);
+    const length = parseFloat(document.getElementById('length').value);
+    const radius = parseFloat(document.getElementById('radius').value);
+    const height = parseFloat(document.getElementById('height').value);
     const resultElement = document.getElementById('3d-result');
     
-    if (isNaN(dimension) || dimension <= 0) {
+    if (isNaN(length) || length <= 0 || (shape === 'cylinder' && (isNaN(radius) || radius <= 0 || isNaN(height) || height <= 0))) {
       resultElement.textContent = '유효한 크기를 입력하세요.';
       return;
     }
@@ -60,12 +62,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // 부피 계산
     if (shape === 'cube') {
-      volume = Math.pow(dimension, 3);
+      volume = Math.pow(length, 3);
     } else if (shape === 'sphere') {
-      volume = (4 / 3) * Math.PI * Math.pow(dimension / 2, 3);
+      volume = (4 / 3) * Math.PI * Math.pow(length / 2, 3);
     } else if (shape === 'cylinder') {
-      const height = dimension;
-      const radius = dimension / 2;
       volume = Math.PI * Math.pow(radius, 2) * height;
     }
 
@@ -81,18 +81,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let geometry;
     if (shape === 'cube') {
-      geometry = new THREE.BoxGeometry(dimension, dimension, dimension);
+      geometry = new THREE.BoxGeometry(length, length, length);
     } else if (shape === 'sphere') {
-      geometry = new THREE.SphereGeometry(dimension / 2, 32, 32);
+      geometry = new THREE.SphereGeometry(length / 2, 32, 32);
     } else if (shape === 'cylinder') {
-      geometry = new THREE.CylinderGeometry(dimension / 2, dimension / 2, dimension, 32);
+      geometry = new THREE.CylinderGeometry(radius, radius, height, 32);
     }
 
     const material = new THREE.MeshBasicMaterial({ color: 0x0077ff, wireframe: true });
     const mesh = new THREE.Mesh(geometry, material);
     scene.add(mesh);
 
-    camera.position.z = dimension * 2;
+    camera.position.z = length * 2;
     
     function animate() {
       requestAnimationFrame(animate);

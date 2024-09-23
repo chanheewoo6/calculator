@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>도형 생성기: 넓이 및 부피 계산</title>
   <link rel="stylesheet" href="styles.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script> <!-- defer 속성 추가 -->
 </head>
 <body>
   <div class="container">
-    <button id="return"><a href="../index.html">돌아가기</a></button>
+    <button id="return"><a href="../index.html" style="text-decoration: none; color: inherit;">돌아가기</a></button> <!-- 스타일 추가 -->
     <h1>도형 연산기: 넓이 및 부피 계산</h1>
 
     <!-- 2D 도형 설정 -->
@@ -20,8 +20,10 @@
         <option value="rectangle">사각형</option>
         <option value="circle">원</option>
       </select>
-      <label for="length">변의 길이:</label>
-      <input type="number" id="length" placeholder="변의 길이">
+      <label for="base">밑변 길이:</label>
+      <input type="number" id="base" placeholder="밑변 길이" required> <!-- required 속성 추가 -->
+      <label for="height">높이:</label>
+      <input type="number" id="height" placeholder="높이" required> <!-- required 속성 추가 -->
       <button id="draw-2d">2D 도형 그리기</button>
       <div id="2d-result" class="result"></div>
     </div>
@@ -34,8 +36,12 @@
         <option value="sphere">구</option>
         <option value="cylinder">원기둥</option>
       </select>
-      <label for="dimension">크기:</label>
-      <input type="number" id="dimension" placeholder="크기">
+      <label for="length">변의 길이:</label>
+      <input type="number" id="length" placeholder="변의 길이" required> <!-- required 속성 추가 -->
+      <label for="radius">반지름 (구 및 원기둥 전용):</label>
+      <input type="number" id="radius" placeholder="반지름" required> <!-- required 속성 추가 -->
+      <label for="height">높이 (원기둥 전용):</label>
+      <input type="number" id="height" placeholder="높이" required> <!-- required 속성 추가 -->
       <button id="draw-3d">3D 도형 그리기</button>
       <div id="3d-result" class="result"></div>
     </div>
@@ -44,6 +50,6 @@
     <div id="canvas-container"></div>
   </div>
 
-  <script src="script.js"></script>
+  <script src="script.js" defer></script> <!-- defer 속성 추가 -->
 </body>
 </html>
