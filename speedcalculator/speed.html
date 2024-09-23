@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,50 +9,50 @@
 </head>
 <body>
   <div class="container">
-    <button><a href="../index.html">돌아가기</a></button>
+    <button class="btn btn-primary"><a href="../index.html" style="color:white; text-decoration:none;">돌아가기</a></button>
     <h1>속력 계산기</h1>
 
     <!-- 거리 단위 선택 -->
     <div class="mode">
-      <label>
-        <input type="radio" name="mode" value="km">
+      <label class="form-check-label">
+        <input type="radio" name="mode" value="km" class="form-check-input">
         <h2>km</h2>
       </label>
-      <label>
-        <input type="radio" name="mode" value="m">
+      <label class="form-check-label">
+        <input type="radio" name="mode" value="m" class="form-check-input">
         <h2>m</h2>
       </label>
-      <label>
-        <input type="radio" name="mode" value="cm">
+      <label class="form-check-label">
+        <input type="radio" name="mode" value="cm" class="form-check-input">
         <h2>cm</h2>
       </label>
     </div>
 
-    <input type="text" id="distance" placeholder="거리를 입력하세요">
+    <input type="text" id="distance" class="form-control" placeholder="거리를 입력하세요">
     <h3>얼마의 거리를 가야 하는지 입력하시오</h3>
 
     <!-- 시간 단위 선택 -->
     <div class="mode">
-      <label>
-        <input type="radio" name="time" value="h">
+      <label class="form-check-label">
+        <input type="radio" name="time" value="h" class="form-check-input">
         <h2>h</h2>
       </label>
-      <label>
-        <input type="radio" name="time" value="m">
+      <label class="form-check-label">
+        <input type="radio" name="time" value="m" class="form-check-input">
         <h2>m</h2>
       </label>
-      <label>
-        <input type="radio" name="time" value="s">
+      <label class="form-check-label">
+        <input type="radio" name="time" value="s" class="form-check-input">
         <h2>s</h2>
       </label>
     </div>
 
-    <input type="text" id="time" placeholder="시간을 입력하세요">
+    <input type="text" id="time" class="form-control" placeholder="시간을 입력하세요">
     <h3>얼마만에 가야 하는지 입력하시오</h3>
 
     <!-- 결과 -->
     <div class="result">
-      <button id="calculateBtn" class="make">생성</button>
+      <button id="calculateBtn" class="btn btn-success">생성</button>
       <p>속력:</p>
       <p id="result"></p>
     </div>
@@ -62,4 +62,3 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-

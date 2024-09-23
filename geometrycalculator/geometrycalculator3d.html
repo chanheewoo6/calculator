@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>3D Geometry Calculator</title>
+  <title>3D 기하학 계산기</title>
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="https://unpkg.com/three@0.138.3/build/three.min.js"></script>
   <script src="https://unpkg.com/three@0.138.3/examples/js/controls/OrbitControls.js"></script>
@@ -90,7 +90,12 @@
     scene.add(axesHelper);
 
     function safeEval(expression, xValue, yValue) {
-      return Function(`"use strict"; let x = ${xValue}; let y = ${yValue}; return (${expression});`)();
+      try {
+        return Function(`"use strict"; let x = ${xValue}; let y = ${yValue}; return (${expression});`)();
+      } catch (e) {
+        console.error("수식을 평가하는 중 오류가 발생했습니다:", e);
+        return 0;
+      }
     }
 
     function drawGraph() {

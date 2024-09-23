@@ -92,7 +92,7 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 5px; /* Rounded corners */
+  border-radius: 5px; /* 모서리를 둥글게 */
 }
 
 button:hover {
@@ -142,10 +142,10 @@ h1 {
   display: block;
   width: 150px;
   height: 50px;
-  background-color: #ff6f61; /* Coral color */
+  background-color: #ff6f61; /* 코랄 색상 */
   color: white;
   text-align: center;
-  line-height: 50px; /* Center the text vertically */
+  line-height: 50px; /* 텍스트를 수직으로 중앙 정렬 */
   border-radius: 25px;
   font-size: 1.2rem;
   font-weight: bold;
@@ -154,6 +154,6 @@ h1 {
 }
 
 #return:hover {
-  background-color: #ff3d2e; /* Darker coral */
+  background-color: #ff3d2e; /* 더 어두운 코랄 */
   transform: scale(1.05);
 }

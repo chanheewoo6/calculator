@@ -5,6 +5,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const length = parseFloat(document.getElementById('length').value);
     const resultElement = document.getElementById('2d-result');
     
+    if (isNaN(length) || length <= 0) {
+      resultElement.textContent = '유효한 길이를 입력하세요.';
+      return;
+    }
+
     let area = 0;
     const canvas = document.createElement('canvas');
     canvas.width = 400;
@@ -26,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
     } else if (shape === 'rectangle') {
       area = Math.pow(length, 2);
       ctx.beginPath();
-      ctx.rect(150, 150, length, length);
+      ctx.rect(200 - length / 2, 200 - length / 2, length, length);
       ctx.stroke();
     } else if (shape === 'circle') {
       area = Math.PI * Math.pow(length / 2, 2);
@@ -46,6 +51,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const dimension = parseFloat(document.getElementById('dimension').value);
     const resultElement = document.getElementById('3d-result');
     
+    if (isNaN(dimension) || dimension <= 0) {
+      resultElement.textContent = '유효한 크기를 입력하세요.';
+      return;
+    }
+
     let volume = 0;
 
     // 부피 계산

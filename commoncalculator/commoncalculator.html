@@ -132,9 +132,9 @@
     function wr(value) {
       if (value === "=") {
         try {
-          result = result.replace(/×/g, '*').replace(/÷/g, '/');
+          result = result.replace(/\*/g, '×').replace(/\//g, '÷');
           let lR = result;
-          result = eval(result);
+          result = eval(result.replace(/×/g, '*').replace(/÷/g, '/'));
           document.getElementById('lastResult').innerText = lR;
           document.getElementById('result').innerText = result;
         } catch (e) {

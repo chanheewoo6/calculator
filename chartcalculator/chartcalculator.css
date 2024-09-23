@@ -21,6 +21,7 @@ h2 {
 table {
   width: 100%;
   margin-bottom: 20px;
+  border-collapse: collapse; /* Add border-collapse for better table styling */
 }
 
 canvas {
@@ -61,4 +62,9 @@ input {
   width: 100%;
   margin-bottom: 15px;
   box-sizing: border-box;
+  transition: border-color 0.3s ease; /* Add transition for better UX */
+}
+
+input:focus {
+  border-color: #007BFF; /* Change border color on focus for better UX */
 }

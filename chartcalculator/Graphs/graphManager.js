@@ -4,7 +4,7 @@ function createChart(type, labels, datasets) {
   const ctx = document.getElementById('myChart').getContext('2d');
   
   if (myChart) {
-    myChart.destroy(); // Reset chart if already exists
+    myChart.destroy(); // 이미 존재하는 차트를 초기화
   }
 
   myChart = new Chart(ctx, {
@@ -14,7 +14,7 @@ function createChart(type, labels, datasets) {
       datasets: datasets
     },
     options: {
-      responsive: true, // Ensure charts scale with screen size
+      responsive: true, // 화면 크기에 맞게 차트 크기 조정
       plugins: {
         legend: {
           position: 'top',
@@ -69,11 +69,11 @@ function getRandomColor() {
 }
 
 function createGraphFromInput(graphType) {
-  const labels = document.getElementById('key').value.split(',');
+  const labels = document.getElementById('key').value.split(',').map(label => label.trim());
   const valuesList = document.getElementById('values').value.split(';');
 
   const datasets = valuesList.map((valueString, index) => {
-    const values = valueString.split(',').map(Number);
+    const values = valueString.split(',').map(value => Number(value.trim()));
     const backgroundColors = values.map(() => getRandomColor());
 
     return {
