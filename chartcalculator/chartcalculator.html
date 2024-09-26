@@ -1,55 +1,90 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>그래프 계산기</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="./Graphs/graphManager.js" defer></script>
-  <link rel="stylesheet" href="./chartcalculator.css">
-</head>
-<body>
-  <button class="button-3d"><a href="../index.html" style="color:white; text-decoration:none;">돌아가기</a></button>
+    <!DOCTYPE html>
+    <html lang="ko">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>그래프 계산기</title>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <script src="./Graphs/graphManager.js" defer></script>
+      <link rel="stylesheet" href="./chartcalculator.css">
+      <style>
+        .styled-button {
+          background-color: #af4c4c;
+          border: none;
+          color: white;
+          padding: 10px 20px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          margin: 4px 2px;
+          cursor: pointer;
+          border-radius: 12px;
+          transition-duration: 0.4s;
+        }
 
-  <h2>그래프 계산기</h2>
-  <h2 id="selectedTopic">선택된 주제가 여기에 표시됩니다.</h2>
+        .styled-button:hover {
+          background-color: white;
+          color: black;
+          border: 2px solid #4CAF50;
+        }
+      </style>
+    </head>
+    <body>
+      <button class="button-3d"><a href="../index.html" style="color:white; text-decoration:none;">돌아가기</a></button>
+    
+      <h2>그래프 계산기</h2>
+      <h2 id="selectedTopic">선택된 주제가 여기에 표시됩니다.</h2>
+    
+      <table>
+        <tr id="Graph">
+          <td><button class="button-3d" id="BarGraph">막대그래프</button></td>
+          <td><button class="button-3d" id="lineGraph">꺾은선그래프</button></td>
+          <td><button class="button-3d" id="circleGraph">원그래프</button></td>
+        </tr>
+      </table>
+    
+      <h3>입력 항목</h3>
+      <table>
+        <tr>
+          <td><label for="key">항목 (쉼표로 구분)</label></td>
+          <td><input type="text" id="key" class="input1" placeholder="예: 항목1, 항목2"></td>
+        </tr>
+        <tr>
+          <td><label for="values">주제 및 값</label></td>
+          <td>
+            <div id="valuesContainer">
+              <div class="value-input">
+                <input type="text" class="input1" placeholder="예: 주제1;값1">
+                <button type="button" class="styled-button" onclick="removeValueInput(this)">삭제</button>
+              </div>
+              <div class="value-input">
+                <input type="text" class="input1" placeholder="예: 주제2;값2">
+                <button type="button" class="styled-button" onclick="removeValueInput(this)">삭제</button>
+              </div>
+            </div>
+            <button type="button" class="styled-button" style="background-color: #41a6ca; color: white;" onclick="addValueInput()">추가</button>
+          </td>
+        </tr>
+      </table>
+      <script>
+        function addValueInput() {
+          const container = document.getElementById('valuesContainer');
+          const newDiv = document.createElement('div');
+          newDiv.className = 'value-input';
+          newDiv.innerHTML = `
+            <input type="text" class="input1" placeholder="예: 주제3;값3">
+            <button type="button" class="styled-button" onclick="removeValueInput(this)">삭제</button>
+          `;
+          container.appendChild(newDiv);
+        }
 
-  <table>
-    <tr id="Graph">
-      <td><button class="button-3d" id="BarGraph">막대그래프</button></td>
-      <td><button class="button-3d" id="lineGraph">꺾은선그래프</button></td>
-      <td><button class="button-3d" id="circleGraph">원그래프</button></td>
-    </tr>
-  </table>
-
-  <h3>입력 항목</h3>
-  <table>
-    <tr>
-      <td><label for="key">항목 (쉼표로 구분)</label></td>
-      <td><input type="text" id="key" class="input1" placeholder="예: 항목1, 항목2"></td>
-    </tr>
-    <tr>
-      <td><label for="values">주제 및 값</label></td>
-      <td>
-        <div id="valuesContainer">
-          <input type="text" class="input1" placeholder="예: 주제1;값1">
-          <input type="text" class="input1" placeholder="예: 주제2;값2">
-        </div>
-        <button type="button" onclick="addValueInput()">추가</button>
-      </td>
-    </tr>
-  </table>
-  <script>
-    function addValueInput() {
-      const container = document.getElementById('valuesContainer');
-      const newInput = document.createElement('input');
-      newInput.type = 'text';
-      newInput.className = 'input1';
-      newInput.placeholder = '예: 주제3;값3';
-      container.appendChild(newInput);
-    }
-  </script>
-
-  <canvas id="myChart" width="400" height="200"></canvas>
-</body>
-</html>
+        function removeValueInput(button) {
+          const div = button.parentElement;
+          div.remove();
+        }
+      </script>
+    
+      <canvas id="myChart" width="400" height="200"></canvas>
+    </body>
+    </html>
