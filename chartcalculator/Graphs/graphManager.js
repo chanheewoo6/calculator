@@ -69,24 +69,21 @@ function getRandomColor() {
 }
 
 function createGraphFromInput(graphType) {
-  // 입력된 항목과 값을 가져와서 그래프를 생성
-  const labels = document.getElementById('key').value.split(',').map(label => label.trim());
-  const valuesInput = document.getElementById('values').value.split(';');
-  
-  const datasets = valuesInput.map((valueString, index) => {
-    const [topic, values] = valueString.split(';');
-    const dataValues = values.split(',').map(value => Number(value.trim()));
-    const backgroundColors = dataValues.map(() => getRandomColor());
+  // 입력된 데이터를 가져와서 그래프를 생성
+  const input = document.getElementById('dataInput').value;
+  const [topic, labelsString, valuesString] = input.split(';');
+  const labels = labelsString.split(',').map(label => label.trim());
+  const values = valuesString.split(',').map(value => Number(value.trim()));
+  const backgroundColors = values.map(() => getRandomColor());
 
-    return {
-      label: topic.trim(),
-      data: dataValues,
-      backgroundColor: backgroundColors,
-      borderColor: backgroundColors,
-      borderWidth: 2,
-      hoverOffset: 4
-    };
-  });
+  const datasets = [{
+    label: topic.trim(),
+    data: values,
+    backgroundColor: backgroundColors,
+    borderColor: backgroundColors,
+    borderWidth: 2,
+    hoverOffset: 4
+  }];
 
   createChart(graphType, labels, datasets);
 }
