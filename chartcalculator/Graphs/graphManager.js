@@ -71,15 +71,16 @@ function getRandomColor() {
 function createGraphFromInput(graphType) {
   // 입력된 항목과 값을 가져와서 그래프를 생성
   const labels = document.getElementById('key').value.split(',').map(label => label.trim());
-  const valuesList = document.getElementById('values').value.split(';');
-
-  const datasets = valuesList.map((valueString, index) => {
-    const values = valueString.split(',').map(value => Number(value.trim()));
-    const backgroundColors = values.map(() => getRandomColor());
+  const valuesInput = document.getElementById('values').value.split(';');
+  
+  const datasets = valuesInput.map((valueString, index) => {
+    const [topic, values] = valueString.split(';');
+    const dataValues = values.split(',').map(value => Number(value.trim()));
+    const backgroundColors = dataValues.map(() => getRandomColor());
 
     return {
-      label: `주제 ${index + 1}`,
-      data: values,
+      label: topic.trim(),
+      data: dataValues,
       backgroundColor: backgroundColors,
       borderColor: backgroundColors,
       borderWidth: 2,
