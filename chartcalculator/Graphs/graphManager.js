@@ -69,6 +69,7 @@ function getRandomColor() {
 }
 
 function createGraphFromInput(graphType) {
+  // 입력된 항목과 값을 가져와서 그래프를 생성
   const labels = document.getElementById('key').value.split(',').map(label => label.trim());
   const valuesList = document.getElementById('values').value.split(';');
 
@@ -90,9 +91,11 @@ function createGraphFromInput(graphType) {
 }
 
 function displaySelectedTopic(topic) {
+  // 선택된 주제를 화면에 표시
   document.getElementById('selectedTopic').textContent = `선택된 주제: ${topic}`;
 }
 
+// 각 버튼에 클릭 이벤트를 추가하여 그래프를 생성
 document.getElementById('BarGraph').addEventListener('click', function() {
   displaySelectedTopic('막대그래프');
   createGraphFromInput('bar');

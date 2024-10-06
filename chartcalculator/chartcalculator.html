@@ -45,6 +45,7 @@
   </table>
 
   <h3>입력 항목</h3>
+  <p>아래 입력란에 항목과 주제별 값을 입력하세요. 각 항목은 쉼표로 구분하고, 주제와 값은 세미콜론으로 구분합니다.</p>
   <table>
     <tr>
       <td><label for="key">항목 (쉼표로 구분)</label></td>
@@ -55,11 +56,11 @@
       <td>
         <div id="valuesContainer">
           <div class="value-input">
-            <input type="text" class="input1" placeholder="예: 주제1;값1">
+            <input type="text" class="input1" placeholder="예: 주제1;값1,값2">
             <button type="button" class="styled-button" onclick="removeValueInput(this)">삭제</button>
           </div>
           <div class="value-input">
-            <input type="text" class="input1" placeholder="예: 주제2;값2">
+            <input type="text" class="input1" placeholder="예: 주제2;값1,값2">
             <button type="button" class="styled-button" onclick="removeValueInput(this)">삭제</button>
           </div>
         </div>
@@ -73,7 +74,7 @@
       const newDiv = document.createElement('div');
       newDiv.className = 'value-input';
       newDiv.innerHTML = `
-        <input type="text" class="input1" placeholder="예: 주제3;값3">
+        <input type="text" class="input1" placeholder="예: 주제3;값1,값2">
         <button type="button" class="styled-button" onclick="removeValueInput(this)">삭제</button>
       `;
       container.appendChild(newDiv);
