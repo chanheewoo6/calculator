@@ -8,6 +8,10 @@
   <script src="./Graphs/graphManager.js" defer></script>
   <link rel="stylesheet" href="./chartcalculator.css">
   <style>
+    body {
+      font-size: 18px; /* 전체적인 글씨 크기 증가 */
+    }
+
     .styled-button {
       background-color: #af4c4c;
       border: none;
@@ -16,7 +20,7 @@
       text-align: center;
       text-decoration: none;
       display: inline-block;
-      font-size: 16px;
+      font-size: 18px; /* 버튼 글씨 크기 증가 */
       margin: 4px 2px;
       cursor: pointer;
       border-radius: 12px;
@@ -28,10 +32,37 @@
       color: black;
       border: 2px solid #4CAF50;
     }
+
+    .button-3d a {
+      color: white;
+      text-decoration: none;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    td {
+      padding: 10px;
+    }
+
+    td label {
+      text-align: right;
+      font-size: 20px; /* 레이블 글씨 크기 증가 */
+    }
+
+    td input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 20px; /* 입력란 글씨 크기 증가 */
+    }
   </style>
 </head>
 <body>
-  <button class="button-3d"><a href="../index.html" style="color:white; text-decoration:none;">돌아가기</a></button>
+  <button class="button-3d"><a href="../index.html">돌아가기</a></button>
 
   <h2>그래프 계산기</h2>
   <h2 id="selectedTopic">선택된 주제가 여기에 표시됩니다.</h2>
@@ -45,14 +76,21 @@
   </table>
 
   <h3>입력 항목</h3>
-  <p>아래 입력란에 주제와 항목별 값을 입력하세요. 주제와 값은 세미콜론으로 구분하고, 각 값은 쉼표로 구분합니다.</p>
   <table>
     <tr>
-      <td><label for="dataInput">주제 및 값 (세미콜론으로 구분)</label></td>
-      <td><input type="text" id="dataInput" class="input1" placeholder="예: 주제1;항목1,항목2,항목3;값1,값2,값3"></td>
+      <td><label for="topic">주제</label></td>
+      <td><input type="text" id="topic" class="input1" placeholder="예: 주제1"></td>
+    </tr>
+    <tr>
+      <td><label for="items">항목</label></td>
+      <td><input type="text" id="items" class="input1" placeholder="예: 항목1;항목2;항목3"></td>
+    </tr>
+    <tr>
+      <td><label for="values">값</label></td>
+      <td><input type="text" id="values" class="input1" placeholder="예: 값1;값2;값3"></td>
     </tr>
   </table>
 
-  <canvas id="myChart" width="400" height="200"></canvas>
+  <canvas id="myChart" width="400" height="400"></canvas>
 </body>
 </html>

@@ -20,14 +20,17 @@ function createChart(type, labels, datasets) {
           position: 'top',
         },
         tooltip: {
+          enabled: true,
+          mode: 'index',
+          intersect: false,
           callbacks: {
             label: function(context) {
-              let label = context.dataset.label || '';
+              let label = context.label || ''; // context.label을 사용하여 항목 이름을 가져옴
               if (label) {
                 label += ': ';
               }
-              if (context.parsed.y !== null) {
-                label += context.parsed.y;
+              if (context.parsed !== null) {
+                label += context.parsed; // context.parsed를 사용하여 값을 가져옴
               }
               return label;
             }
@@ -70,10 +73,9 @@ function getRandomColor() {
 
 function createGraphFromInput(graphType) {
   // 입력된 데이터를 가져와서 그래프를 생성
-  const input = document.getElementById('dataInput').value;
-  const [topic, labelsString, valuesString] = input.split(';');
-  const labels = labelsString.split(',').map(label => label.trim());
-  const values = valuesString.split(',').map(value => Number(value.trim()));
+  const topic = document.getElementById('topic').value;
+  const items = document.getElementById('items').value.split(';').map(item => item.trim());
+  const values = document.getElementById('values').value.split(';').map(value => parseFloat(value.trim()));
   const backgroundColors = values.map(() => getRandomColor());
 
   const datasets = [{
@@ -85,7 +87,7 @@ function createGraphFromInput(graphType) {
     hoverOffset: 4
   }];
 
-  createChart(graphType, labels, datasets);
+  createChart(graphType, items, datasets);
 }
 
 function displaySelectedTopic(topic) {
