@@ -4,61 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>2D Geometry Calculator</title>
+  <link rel="stylesheet" href="styles2d.css"> <!-- CSS 파일 링크 추가 -->
   <script src="https://d3js.org/d3.v7.min.js"></script>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f7fc;
-      color: #333;
-      text-align: center;
-      padding: 20px;
-    }
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 20px;
-      color: #004c99;
-    }
-    label, input, button {
-      font-size: 1.1rem;
-    }
-    input[type="text"] {
-      width: 300px;
-      padding: 8px;
-      margin: 10px 0;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-    button {
-      padding: 10px 20px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #0056b3;
-    }
-    #return {
-      text-decoration: none;
-      color: white;
-    }
-    #graph {
-      margin-top: 30px;
-      border: 1px solid #ddd;
-      background-color: white;
-      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    }
-    #result {
-      font-size: 3rem; /* 글씨 크기를 크게 늘림 */
-      font-weight: bold;
-      text-align: right;
-      padding: 10px;
-      background-color: rgba(255, 255, 255, 0.8);
-      border-radius: 5px;
-      margin-bottom: 10px;
-    }
-  </style>
+  <script src="scripts2d.js" defer></script> <!-- JavaScript 파일 링크 추가 -->
 </head>
 <body>
   <button><a href="../index.html" id="return">돌아가기</a></button>
@@ -71,60 +19,5 @@
   
   <!-- 그래프가 그려질 공간 -->
   <div id="graph"></div>
-
-  <script>
-    const width = 800;
-    const height = 400;
-    const margin = {top: 20, right: 30, bottom: 30, left: 40};
-
-    const svg = d3.select("#graph")
-      .append("svg")
-      .attr("width", width)
-      .attr("height", height)
-      .append("g")
-      .attr("transform", `translate(${margin.left},${margin.top})`);
-
-    const x = d3.scaleLinear()
-      .domain([-10, 10])
-      .range([0, width - margin.left - margin.right]);
-
-    const y = d3.scaleLinear()
-      .domain([-10, 10])
-      .range([height - margin.top - margin.bottom, 0]);
-
-    svg.append("g")
-      .attr("transform", `translate(0,${y(0)})`)
-      .call(d3.axisBottom(x));
-
-    svg.append("g")
-      .attr("transform", `translate(${x(0)},0)`)
-      .call(d3.axisLeft(y));
-
-    function drawGraph() {
-      const equation = document.getElementById("equation").value;
-      if (!equation) return;
-
-      try {
-        const data = d3.range(-10, 10.1, 0.1).map(d => {
-          let x = d;
-          let y = eval(equation);
-          return {x: x, y: y};
-        });
-
-        const line = d3.line()
-          .x(d => x(d.x))
-          .y(d => y(d.y));
-
-        svg.append("path")
-          .datum(data)
-          .attr("fill", "none")
-          .attr("stroke", "steelblue")
-          .attr("stroke-width", 2)
-          .attr("d", line);
-      } catch (error) {
-        alert("수식에 오류가 있습니다. 다시 입력해주세요.");
-      }
-    }
-  </script>
 </body>
 </html>
