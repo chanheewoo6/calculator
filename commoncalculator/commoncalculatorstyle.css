@@ -11,6 +11,10 @@
   text-align: center;
 }
 
+#select {
+  item-size: 500px;
+}
+
 .color1 {
   border: none;
   background-color: #94da79;
